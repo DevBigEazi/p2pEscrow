@@ -69,16 +69,16 @@ contract P2PEscrow is ReentrancyGuard {
     }
 
     event TradeActive(
-        address indexed _buyer,
-        address indexed _seller,
-        uint256 _escrowFee,
-        uint256 _totalTradingCost
+        address indexed buyer,
+        address indexed seller,
+        uint256 escrowFee,
+        uint256 totalTradingCost
     );
-    event TradeCompleted(address indexed _buyer, address indexed _seller);
+    event TradeCompleted(address indexed buyer, address indexed seller);
     event Transfer(
-        address indexed _buyer,
-        address indexed _spender,
-        uint256 _amount
+        address indexed buyer,
+        address indexed spender,
+        uint256 amount
     );
     event Action(string actionType, address indexed executor);
 
@@ -199,7 +199,6 @@ contract P2PEscrow is ReentrancyGuard {
 
         _token.safeTransfer(seller, productTotalPrice);
         _token.safeTransfer(owner, tradeInfo.escrowFee + tradeInfo.logisticFee); // transfer escrow fee and logistic fee to the owner
-        // _token.safeTransfer(owner,  tradeInfo.logisticFee);
 
         emit TradeCompleted(buyer, seller);
 
