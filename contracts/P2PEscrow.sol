@@ -88,7 +88,7 @@ contract P2PEscrow is ReentrancyGuard {
         string[] memory _products,
         uint256[] memory _productPrices,
         uint256 _logisticFee
-    ) external preventAddressZero returns (bool success_) {
+    ) external preventAddressZero nonReentrant returns (bool success_) {
         require(msg.sender == _seller, "Seller can not buy their product");
         require(_products.length > 0, "At least one product required");
         require(_products.length <= 5, "You can not trade more than 5 products in a trade");
@@ -172,7 +172,7 @@ contract P2PEscrow is ReentrancyGuard {
     function completeTrade(
         IERC20 _token,
         uint256 _tradeId
-    ) external preventAddressZero returns (bool success_) {
+    ) external preventAddressZero nonReentrant returns (bool success_) {
         TradeInfo memory tradeInfo = trade[_tradeId];
 
         address buyer = tradeInfo.buyer;

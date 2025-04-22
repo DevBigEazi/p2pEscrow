@@ -2,6 +2,7 @@ import { HardhatUserConfig, vars } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox-viem";
 
 const ANKR_API_KEY = vars.get("ANKR_API_KEY");
+
 const config: HardhatUserConfig = {
   solidity: "0.8.26",
   networks: {
